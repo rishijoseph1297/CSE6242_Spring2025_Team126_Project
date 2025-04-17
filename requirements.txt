@@ -4,6 +4,5 @@ numpy
 scikit-learn
 matplotlib
 scipy
-yellowbrick
+yellowbrick==1.3.post1
 urllib3
-# force rebuild
