@@ -6,4 +6,3 @@ matplotlib
 scipy
 yellowbrick
 urllib3
-KElbowVisualizer
