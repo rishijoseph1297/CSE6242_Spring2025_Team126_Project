@@ -4,5 +4,4 @@ numpy
 scikit-learn
 matplotlib
 scipy
-yellowbrick==1.3.post1
 urllib3
