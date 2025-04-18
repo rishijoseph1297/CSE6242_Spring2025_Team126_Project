@@ -581,6 +581,7 @@ ax.tick_params(axis='y', colors='white')
 # Set legend text to white
 legend = ax.legend(loc="best", fontsize=12, markerscale=3)
 legend.get_frame().set_facecolor("none")
+legend.get_frame().set_edgecolor("none")
 for text in legend.get_texts():
     text.set_color("white")
 
@@ -688,6 +689,7 @@ def plot_player_vs_league(player_data, league_data, stat, ax=None):
     ax.legend()
     legend = ax.legend(loc="best", fontsize=12, markerscale=1)
     legend.get_frame().set_facecolor("none")
+    legend.get_frame().set_edgecolor("none")
     for text in legend.get_texts():
         text.set_color('white')
     return ax
