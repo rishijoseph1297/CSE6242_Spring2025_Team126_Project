@@ -271,7 +271,6 @@ import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
 from sklearn.metrics import pairwise_distances, euclidean_distances
 from sklearn.metrics import silhouette_score
-# from yellowbrick.cluster import KElbowVisualizer
 from collections import defaultdict
 
 import numpy as np
