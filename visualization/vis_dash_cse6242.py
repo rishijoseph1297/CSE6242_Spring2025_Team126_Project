@@ -579,7 +579,8 @@ ax.tick_params(axis='x', colors='white')
 ax.tick_params(axis='y', colors='white')
 
 # Set legend text to white
-legend = ax.legend(loc="best", fontsize=12, markerscale=3, facecolor="none")
+legend = ax.legend(loc="best", fontsize=12, markerscale=3)
+legend.get_frame().set_facecolor("none")
 for text in legend.get_texts():
     text.set_color("white")
 
@@ -685,7 +686,8 @@ def plot_player_vs_league(player_data, league_data, stat, ax=None):
     ax.set_xticks(player_data['Year'])  # dynamic x-axis ticks
 
     ax.legend()
-    legend = ax.legend(loc="best", fontsize=12, markerscale=1, facecolor="none")
+    legend = ax.legend(loc="best", fontsize=12, markerscale=1)
+    legend.get_frame().set_facecolor("none")
     for text in legend.get_texts():
         text.set_color('white')
     return ax
