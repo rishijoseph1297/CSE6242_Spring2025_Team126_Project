@@ -265,12 +265,13 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 from sklearn.cluster import KMeans
+from sklearn.metrics import calinski_harabasz_score
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
 from sklearn.metrics import pairwise_distances, euclidean_distances
 from sklearn.metrics import silhouette_score
-from yellowbrick.cluster import KElbowVisualizer
+# from yellowbrick.cluster import KElbowVisualizer
 from collections import defaultdict
 
 import numpy as np
@@ -349,24 +350,44 @@ hand_players_df = players_df_model[hand_selected_vars]
 ######## Feature Evaluation #######
 ###################################
 
-# big loop to compare cluster difference scores
+## big loop to compare cluster difference scores
+# def run_k_selection_and_record_scores(datasets, k_range=(2, 11)):
+#     results = []
+
+#     for dataset_name, data in datasets.items():
+#         print(f"Processing dataset: {dataset_name}")
+
+#         # Initialize KMeans and KElbowVisualizer
+#         model = KMeans(random_state=1, n_init='auto')
+#         visualizer = KElbowVisualizer(model, k=k_range, metric='calinski_harabasz', timings=False, locate_elbow=True)
+
+#         # Fit the visualizer to the data
+#         visualizer.fit(data)
+#         # Record silhouette scores
+#         for k, score in zip(range(k_range[0], k_range[1] + 1), visualizer.k_scores_):
+#             results.append({'Dataset': dataset_name, 'K': k, 'CH Index': score})
+
+#     # Convert results to a DataFrame
+#     results_df = pd.DataFrame(results)
+#     return results_df
+
 def run_k_selection_and_record_scores(datasets, k_range=(2, 11)):
     results = []
 
     for dataset_name, data in datasets.items():
         print(f"Processing dataset: {dataset_name}")
+        
+        for k in range(k_range[0], k_range[1] + 1):
+            kmeans = KMeans(n_clusters=k, random_state=1, n_init='auto')
+            labels = kmeans.fit_predict(data)
+            score = calinski_harabasz_score(data, labels)
+            
+            results.append({
+                'Dataset': dataset_name,
+                'K': k,
+                'CH Index': score
+            })
 
-        # Initialize KMeans and KElbowVisualizer
-        model = KMeans(random_state=1, n_init='auto')
-        visualizer = KElbowVisualizer(model, k=k_range, metric='calinski_harabasz', timings=False, locate_elbow=True)
-
-        # Fit the visualizer to the data
-        visualizer.fit(data)
-        # Record silhouette scores
-        for k, score in zip(range(k_range[0], k_range[1] + 1), visualizer.k_scores_):
-            results.append({'Dataset': dataset_name, 'K': k, 'CH Index': score})
-
-    # Convert results to a DataFrame
     results_df = pd.DataFrame(results)
     return results_df
 
