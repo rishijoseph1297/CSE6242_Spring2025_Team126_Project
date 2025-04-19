@@ -59,7 +59,7 @@ def normalize_height(height):
         return 72
 
 # --- Load Data ---
-college_df = pd.read_csv("player_data_college_latest_season.csv")
+college_df = pd.read_csv("player_data_college.csv")
 nba_df = pd.read_csv("nba_player_avgs_2008-2025.csv")
 map_df = pd.read_csv("nba_ncaa_map.csv")
 
@@ -281,7 +281,7 @@ np.random.seed(6242)
 ###################################
 
 # read in data
-players_df_edited = pd.read_csv('player_data_college_latest_season.csv')
+players_df_edited = pd.read_csv('player_data_college.csv')
 
 # apply filters
 players_df_edited.dropna(inplace=True)
@@ -586,7 +586,7 @@ for text in legend.get_texts():
     text.set_color("white")
 
 # PCA Cluster Player Marker
-players_df_edited = pd.read_csv('player_data_college_latest_season.csv')
+players_df_edited = pd.read_csv('player_data_college.csv')
 
 # apply filters
 player_row_df = players_df_edited[players_df_edited['ncaa_id'] == ncaa_id]
